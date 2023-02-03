@@ -6,13 +6,13 @@ Package: et_api
 Version: 0.1.0
 License: MIT
 """
-from et_api.endpoints.IP import IP
+from et_api.web.Collection import Collection
 from et_api.web.Resource import Resource
 
 
-class IPs(Resource):
+class CollectionResource(Resource):
     def __init__(self, parent, uri: str):
         super().__init__(parent, uri)
 
-    def __call__(self, ip: str) -> IP:
-        return IP(self, ip.casefold().strip())
+    def __call__(self) -> Collection:
+        return Collection(self._session.get(self.uri))

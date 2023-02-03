@@ -20,8 +20,15 @@ class Collection:
         self.__response = response
         self.__initial = True
 
+    def __getitem__(self, index):
+        return self.__response.json().get('response', [])[index]
+
+    def __len__(self) -> int:
+        return len(self.__response.json().get('response', []))
+
     def __iter__(self):
-        return iter(self.__response.json().get('response', []))
+        self.__iterator = iter(self.__response.json().get('response', []))
+        return self
 
     def __next__(self):
         return next(self.__iterator)
