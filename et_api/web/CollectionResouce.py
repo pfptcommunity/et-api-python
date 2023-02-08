@@ -8,11 +8,17 @@ License: MIT
 """
 from et_api.web.Collection import Collection
 from et_api.web.Resource import Resource
+from typing import TypeVar, Type
+
+T = TypeVar('T', bound=Collection)
 
 
 class CollectionResource(Resource):
-    def __init__(self, parent, uri: str):
-        super().__init__(parent, uri)
+    __collection_type: Type[T]
 
-    def __call__(self) -> Collection:
-        return Collection(self._session.get(self.uri))
+    def __init__(self, parent, uri: str, collection_type: Type[T] = Collection):
+        super().__init__(parent, uri)
+        self.__collection_type = collection_type
+
+    def __call__(self) -> T:
+        return self.__collection_type(self._session.get(self.uri))
