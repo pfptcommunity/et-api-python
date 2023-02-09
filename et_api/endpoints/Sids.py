@@ -7,7 +7,7 @@ Version: 0.1.0
 License: MIT
 """
 from et_api.endpoints.Sid import Sid
-from et_api.web.Resource import Resource
+from et_api.rest.Resource import Resource
 
 
 class Sids(Resource):

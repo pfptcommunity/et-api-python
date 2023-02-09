@@ -6,9 +6,9 @@ Package: et_api
 Version: 0.1.0
 License: MIT
 """
-from et_api.web.DictionaryResouce import DictionaryResource
-from et_api.web.CollectionResouce import CollectionResource
-from et_api.web.SidInfo import SidInfo
+from et_api.rest.DictionaryResouce import DictionaryResource
+from et_api.rest.CollectionResouce import CollectionResource
+from et_api.resources.SidInfo import SidInfo
 
 
 class Sid(DictionaryResource[SidInfo]):

@@ -6,8 +6,8 @@ Package: et_api
 Version: 0.1.0
 License: MIT
 """
-from et_api.web.Collection import Collection
-from et_api.web.Resource import Resource
+from et_api.resources.Collection import Collection
+from et_api.rest.Resource import Resource
 from typing import TypeVar, Type, Generic
 
 T = TypeVar('T', bound=Collection)

@@ -8,7 +8,7 @@ License: MIT
 """
 from typing import Dict
 from requests import Response
-from et_api.web.Dictionary import Dictionary
+from et_api.resources.Dictionary import Dictionary
 
 
 class Whois(Dictionary):

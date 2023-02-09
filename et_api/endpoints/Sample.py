@@ -6,9 +6,9 @@ Package: et_api
 Version: 0.1.0
 License: MIT
 """
-from et_api.web.DictionaryResouce import DictionaryResource
-from et_api.web.CollectionResouce import CollectionResource
-from et_api.web.SampleInfo import SampleInfo
+from et_api.rest.DictionaryResouce import DictionaryResource
+from et_api.rest.CollectionResouce import CollectionResource
+from et_api.resources.SampleInfo import SampleInfo
 
 
 class Sample(DictionaryResource[SampleInfo]):

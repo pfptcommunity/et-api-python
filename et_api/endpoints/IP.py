@@ -6,8 +6,8 @@ Package: et_api
 Version: 0.1.0
 License: MIT
 """
-from et_api.web.Resource import Resource
-from et_api.web.CollectionResouce import CollectionResource
+from et_api.rest.Resource import Resource
+from et_api.rest.CollectionResouce import CollectionResource
 
 
 class IP(Resource):

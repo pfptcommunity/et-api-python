@@ -12,7 +12,7 @@ from et_api.endpoints.Domains import Domains
 from et_api.endpoints.IPs import IPs
 from et_api.endpoints.Samples import Samples
 from et_api.endpoints.Sids import Sids
-from et_api.web.Resource import Resource
+from et_api.rest.Resource import Resource
 from requests import Response
 
 class Client(Resource):

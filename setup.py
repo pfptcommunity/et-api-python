@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='et-api-python',
     version='0.1.0',
-    packages=['et_api', 'et_api.web', 'et_api.endpoints'],
+    packages=['et_api', 'et_api.resources', 'et_api.endpoints'],
     install_requires=['requests'],
     url='https://github.com/pfptcommunity/et-api-python',
     license='MIT',
