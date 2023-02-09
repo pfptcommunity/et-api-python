@@ -7,9 +7,9 @@ Version: 0.1.0
 License: MIT
 """
 from et_api.web.Resource import Resource
+from et_api.web.Whois import Whois
 from et_api.web.DictionaryResouce import DictionaryResource
 from et_api.web.CollectionResouce import CollectionResource
-from et_api.web.Whois import Whois
 
 
 class Domain(Resource):
@@ -19,7 +19,7 @@ class Domain(Resource):
     __ips: CollectionResource = None
     __events: CollectionResource = None
     __nameservers: CollectionResource = None
-    __whois: DictionaryResource = None
+    __whois: DictionaryResource[Whois] = None
     __geoloc: CollectionResource = None
 
     def __init__(self, parent, uri: str):
@@ -30,7 +30,7 @@ class Domain(Resource):
         self.__ips = CollectionResource(self, "ips")
         self.__events = CollectionResource(self, "events")
         self.__nameservers = CollectionResource(self, "nameservers")
-        self.__whois = DictionaryResource(self, "whois", Whois)
+        self.__whois = DictionaryResource[Whois](self, "whois", Whois)
         self.__geoloc = CollectionResource(self, "geoloc")
 
     @property
@@ -58,7 +58,7 @@ class Domain(Resource):
         return self.__nameservers
 
     @property
-    def whois(self) -> DictionaryResource:
+    def whois(self) -> DictionaryResource[Whois]:
         return self.__whois
 
     @property

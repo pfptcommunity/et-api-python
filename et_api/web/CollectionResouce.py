@@ -8,12 +8,12 @@ License: MIT
 """
 from et_api.web.Collection import Collection
 from et_api.web.Resource import Resource
-from typing import TypeVar, Type
+from typing import TypeVar, Type, Generic
 
 T = TypeVar('T', bound=Collection)
 
 
-class CollectionResource(Resource):
+class CollectionResource(Generic[T], Resource):
     __collection_type: Type[T]
 
     def __init__(self, parent, uri: str, collection_type: Type[T] = Collection):

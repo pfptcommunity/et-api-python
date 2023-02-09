@@ -10,6 +10,8 @@ from et_api import Version
 from et_api.endpoints.Repcategories import Repcategories
 from et_api.endpoints.Domains import Domains
 from et_api.endpoints.IPs import IPs
+from et_api.endpoints.Samples import Samples
+from et_api.endpoints.Sids import Sids
 from et_api.web.Resource import Resource
 from requests import Response
 
@@ -19,6 +21,8 @@ class Client(Resource):
     __repcategories: Repcategories = None
     __domains: Domains = None
     __ips: IPs = None
+    __samples: Samples = None
+    __sids: Sids = None
 
     def __session_hook(self, response: Response, **kwargs) -> Response:
         if response.status_code == 401:
@@ -43,24 +47,34 @@ class Client(Resource):
         self._session.headers.update({'Authorization': api_token})
         self.__repcategories = Repcategories(self, "repcategories")
         self.__domains = Domains(self, "domains")
-        self.__ips = Domains(self, "ips")
+        self.__ips = IPs(self, "ips")
+        self.__samples = Samples(self, "samples")
+        self.__sids = Sids(self, "samples")
 
     @property
-    def token(self):
+    def token(self) -> str:
         return self.__api_token
 
     @property
-    def version(self):
+    def version(self) -> str:
         return self.__version.value
 
     @property
-    def repcategories(self):
+    def repcategories(self) -> Repcategories:
         return self.__repcategories
 
     @property
-    def domains(self):
+    def domains(self) -> Domains:
         return self.__domains
 
     @property
-    def ips(self):
+    def ips(self) -> IPs:
         return self.__ips
+
+    @property
+    def samples(self) -> Samples:
+        return self.__samples
+
+    @property
+    def sids(self) -> Sids:
+        return self.__sids

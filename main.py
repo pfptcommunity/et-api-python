@@ -9,6 +9,33 @@ if __name__ == '__main__':
 
     categories = client.repcategories()
 
+    sid_info = client.sids("2000005")()
+
+    print(sid_info.get_status())
+
+    for dns in client.sids("2000005").domains():
+        print(dns)
+
+    exit(0)
+
+    sample_info = client.samples("fa86e86e9dfb7a4571b3c3091fbf4bff")()
+
+    print(sample_info)
+
+    for connection in client.samples("fa86e86e9dfb7a4571b3c3091fbf4bff").connections():
+        print(connection)
+
+    for dns in client.samples("fa86e86e9dfb7a4571b3c3091fbf4bff").dns():
+        print(dns)
+
+    for event in client.samples("fa86e86e9dfb7a4571b3c3091fbf4bff").events():
+        print(connection)
+
+    for http in client.samples("fa86e86e9dfb7a4571b3c3091fbf4bff").http():
+        print(connection)
+
+
+
     wi = client.domains("yahoo.com").whois()
     print("Domain: ", wi.domain)
     print("Registrar Name: ", wi.registrar_name)

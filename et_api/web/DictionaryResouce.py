@@ -8,12 +8,12 @@ License: MIT
 """
 from et_api.web.Dictionary import Dictionary
 from et_api.web.Resource import Resource
-from typing import TypeVar, Type
+from typing import TypeVar, Type, Generic
 
 T = TypeVar('T', bound=Dictionary)
 
 
-class DictionaryResource(Resource):
+class DictionaryResource(Generic[T], Resource):
     __dict_type: Type[T]
 
     def __init__(self, parent, uri: str, dict_type: Type[T] = Dictionary):

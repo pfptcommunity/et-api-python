@@ -8,6 +8,5 @@ License: MIT
 """
 from .Client import Client
 from .Version import Version
-from .endpoints import Repcategories
 
-__all__ = ['Client', 'Version', 'Repcategories']
+__all__ = ['Client', 'Version']
