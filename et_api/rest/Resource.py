@@ -36,6 +36,13 @@ class Resource:
         return uri
 
     @property
+    def version(self) -> str:
+        current = self
+        while current.parent is not None:
+            current = current.parent
+        return current.version if hasattr(current, 'version') else None
+
+    @property
     def parent(self):
         return self.__parent
 

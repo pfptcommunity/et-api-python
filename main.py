@@ -9,6 +9,7 @@ if __name__ == '__main__':
 
     categories = client.repcategories()
 
+    print(client.sids("asdfsdf").version)
     sid_info = client.sids("2000005")()
 
     print(sid_info.get_status())
