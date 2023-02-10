@@ -1,6 +1,32 @@
-from json import dumps
-
 from et_api import *
+
+from typing import TypeVar, Generic, List, Dict
+
+T = TypeVar('T', List, Dict)
+
+
+class Stack(Generic[T]):
+    __items: List[T]
+
+    def __init__(self) -> None:
+        # Create an empty list with items of type T
+        self.__items = []
+
+    def push(self, item: T) -> None:
+        self.__items.append(item)
+
+    def pop(self) -> T:
+        return self.__items.pop()
+
+    def empty(self) -> bool:
+        return not self.__items
+
+
+l = Stack[list]()
+
+l.push(['a', 'b'])
+
+print(l.pop())
 
 if __name__ == '__main__':
     api_key_file = open("et.api_key", "r")
@@ -34,8 +60,6 @@ if __name__ == '__main__':
 
     for http in client.samples("fa86e86e9dfb7a4571b3c3091fbf4bff").http():
         print(connection)
-
-
 
     wi = client.domains("yahoo.com").whois()
     print("Domain: ", wi.domain)

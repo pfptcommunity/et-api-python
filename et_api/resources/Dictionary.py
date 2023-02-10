@@ -15,7 +15,7 @@ class Dictionary(dict):
     __response: Response
 
     def __init__(self, response: Response):
-        super().__init__(response.json())
+        super().__init__(response.json().get('response', {}))
         self.__response = response
 
     def get_success(self) -> bool:
