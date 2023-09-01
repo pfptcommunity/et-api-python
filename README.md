@@ -14,16 +14,17 @@ pip install git+https://github.com/pfptcommunity/et-api-python.git
 ```
 
 ### Getting Started
+
 ```python
-from et_api import *
+from src.et_api import *
 
 if __name__ == '__main__':
     client = client = Client(Version.V1, "<enter_your_api_key_here>")
-    
+
     # Get all the reputation categories
     categories = client.repcategories()
     for category in categories:
-      print(category)
+        print(category)
 ```
 
 ### Limitations

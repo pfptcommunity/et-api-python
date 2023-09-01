@@ -3,12 +3,11 @@ This code was tested against Python 3.9
 
 Author: Ludvik Jerabek
 Package: et_api
-Version: 0.1.0
 License: MIT
 """
-from et_api.rest.DictionaryResouce import DictionaryResource
-from et_api.rest.CollectionResouce import CollectionResource
-from et_api.resources.SidInfo import SidInfo
+from src.et_api.web.DictionaryResource import DictionaryResource
+from src.et_api.web.CollectionResource import CollectionResource
+from src.et_api.v1.resources.SidInfo import SidInfo
 
 
 class Sid(DictionaryResource[SidInfo]):

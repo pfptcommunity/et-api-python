@@ -3,7 +3,6 @@ This code was tested against Python 3.9
  
 Author: Ludvik Jerabek
 Package: psat_api
-Version: 0.1.1
 License: MIT
 """
 from posixpath import join
@@ -34,13 +33,6 @@ class Resource:
             uri = join(parent.name, uri)
             parent = parent.__parent
         return uri
-
-    @property
-    def version(self) -> str:
-        current = self
-        while current.parent is not None:
-            current = current.parent
-        return current.version if hasattr(current, 'version') else None
 
     @property
     def parent(self):
