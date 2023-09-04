@@ -9,7 +9,7 @@ from src.et_api.v1.resources.Collection import Collection
 from src.et_api.web.Resource import Resource
 
 
-class Repcategories(Resource):
+class ReputationCategories(Resource):
     def __init__(self, parent, uri: str):
         super().__init__(parent, uri)
 

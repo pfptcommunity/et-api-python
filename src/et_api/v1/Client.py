@@ -7,6 +7,7 @@ License: MIT
 """
 
 from requests import Response
+
 from src.et_api.v1.endpoints import *
 from src.et_api.web.Resource import Resource
 
@@ -14,7 +15,7 @@ from src.et_api.web.Resource import Resource
 class Client(Resource):
     __api_token: str
     __raise_for_status: bool
-    __repcategories: Repcategories = None
+    __reputation_categories: ReputationCategories = None
     __domains: Domains = None
     __ips: IPs = None
     __samples: Samples = None
@@ -45,7 +46,7 @@ class Client(Resource):
         self.__raise_for_status = raise_for_status
         self._session.hooks = {"response": self.__session_hook}
         self._session.headers.update({'Authorization': api_token})
-        self.__repcategories = Repcategories(self, "repcategories")
+        self.__reputation_categories = ReputationCategories(self, "repcategories")
         self.__domains = Domains(self, "domains")
         self.__ips = IPs(self, "ips")
         self.__samples = Samples(self, "samples")
@@ -56,8 +57,8 @@ class Client(Resource):
         return self.__api_token
 
     @property
-    def repcategories(self) -> Repcategories:
-        return self.__repcategories
+    def reputation_categories(self) -> ReputationCategories:
+        return self.__reputation_categories
 
     @property
     def domains(self) -> Domains:

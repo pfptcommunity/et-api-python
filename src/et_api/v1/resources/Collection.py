@@ -5,10 +5,9 @@ Author: Ludvik Jerabek
 Package: et_api
 License: MIT
 """
-from urllib.parse import urljoin
-from requests import Response
 from typing import List
-from typing import Iterator
+
+from requests import Response
 
 
 class Collection(List):

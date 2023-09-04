@@ -5,9 +5,9 @@ Author: Ludvik Jerabek
 Package: et_api
 License: MIT
 """
-from urllib.parse import urljoin
-from requests import Response
 from typing import Dict
+
+from requests import Response
 
 
 class Dictionary(dict):
@@ -16,12 +16,13 @@ class Dictionary(dict):
     def __init__(self, response: Response):
         super().__init__(response.json().get('response', {}))
         self.__response = response
-
-    def get_success(self) -> bool:
-        return self.get('success', False)
+        print(response.json())
 
     def get_response(self) -> Dict:
-        return self.get('response', {})
+        return self.__response.json().get('response', {})
+
+    def get_success(self) -> bool:
+        return self.__response.json().get('success', False)
 
     def get_status(self) -> int:
         return self.__response.status_code

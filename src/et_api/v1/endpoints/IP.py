@@ -5,8 +5,8 @@ Author: Ludvik Jerabek
 Package: et_api
 License: MIT
 """
-from src.et_api.web.Resource import Resource
 from src.et_api.web.CollectionResource import CollectionResource
+from src.et_api.web.Resource import Resource
 
 
 class IP(Resource):
@@ -47,5 +47,5 @@ class IP(Resource):
         return self.__geoloc
 
     @property
-    def geoloc(self) -> CollectionResource:
+    def domains(self) -> CollectionResource:
         return self.__domains

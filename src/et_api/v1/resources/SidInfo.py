@@ -6,6 +6,7 @@ Package: et_api
 License: MIT
 """
 from requests import Response
+
 from src.et_api.v1.resources.Dictionary import Dictionary
 
 

@@ -5,10 +5,10 @@ Author: Ludvik Jerabek
 Package: et_api
 License: MIT
 """
-from src.et_api.web.Resource import Resource
 from src.et_api.v1.resources.Whois import Whois
-from src.et_api.web.DictionaryResource import DictionaryResource
 from src.et_api.web.CollectionResource import CollectionResource
+from src.et_api.web.DictionaryResource import DictionaryResource
+from src.et_api.web.Resource import Resource
 
 
 class Domain(Resource):
@@ -37,11 +37,11 @@ class Domain(Resource):
         return self.__urls
 
     @property
-    def reputation(self)  -> CollectionResource:
+    def reputation(self) -> CollectionResource:
         return self.__reputation
 
     @property
-    def samples(self)  -> CollectionResource:
+    def samples(self) -> CollectionResource:
         return self.__samples
 
     @property

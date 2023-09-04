@@ -5,10 +5,10 @@ Author: Ludvik Jerabek
 Package: et_api
 License: MIT
 """
-from .Repcategories import Repcategories
 from .Domains import Domains
 from .IPs import IPs
+from .ReputationCategories import ReputationCategories
 from .Samples import Samples
 from .Sids import Sids
 
-__all__ = ['Repcategories','Domains','IPs','Samples','Sids']
+__all__ = ['ReputationCategories', 'Domains', 'IPs', 'Samples', 'Sids']

@@ -5,9 +5,9 @@ Author: Ludvik Jerabek
 Package: et_api
 License: MIT
 """
-from src.et_api.web.DictionaryResource import DictionaryResource
-from src.et_api.web.CollectionResource import CollectionResource
 from src.et_api.v1.resources.SampleInfo import SampleInfo
+from src.et_api.web.CollectionResource import CollectionResource
+from src.et_api.web.DictionaryResource import DictionaryResource
 
 
 class Sample(DictionaryResource[SampleInfo]):
