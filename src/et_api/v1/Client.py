@@ -63,9 +63,6 @@ class Client(Resource):
         self.__samples = Samples(self, "samples")
         self.__sids = Sids(self, "sids")
 
-    @property
-    def token(self) -> str:
-        return self.__api_token
 
     @property
     def reputation_categories(self) -> DictionaryCollection[CategoryInfo]:

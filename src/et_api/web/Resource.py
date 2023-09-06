@@ -7,7 +7,6 @@ License: MIT
 """
 from posixpath import join
 from typing import TypeVar, Union
-
 from requests import Session
 
 TResource = TypeVar('TResource', bound=Union['Resource', None])
@@ -36,7 +35,7 @@ class Resource:
         return uri
 
     @property
-    def parent(self):
+    def _parent(self):
         return self.__parent
 
     @property

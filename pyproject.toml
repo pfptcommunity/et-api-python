@@ -14,10 +14,8 @@ readme = "README.md"
 description = "Proofpoint Emerging Threats Python API Package"
 license = { text = "MIT" }
 dependencies = [
-    'python-dateutil>=2.8.2',
     'requests>=2.28.2',
-    'setuptools>=65.5.1',
-    'cryptography>=40.0.2'
+    'setuptools>=65.5.1'
 ]
 
 [project.urls]
