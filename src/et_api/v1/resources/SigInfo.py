@@ -10,14 +10,18 @@ from requests import Response
 from et_api.web.Dictionary import Dictionary
 
 
-class SidInfo(Dictionary):
+class SigInfo(Dictionary):
     def __init__(self, response: Response):
         super().__init__(response)
 
     @property
     def sid(self) -> str:
-        return self.get_response().get('sid', None)
+        return self.get('sid', None)
 
     @property
-    def sig_name(self) -> str:
-        return self.get_response().get('sig_name', None)
+    def suricata(self) -> str:
+        return self.get('suricata_text')
+
+    @property
+    def snort(self) -> str:
+        return self.get('snort_text')

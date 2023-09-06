@@ -9,7 +9,7 @@ from requests import Response
 
 from et_api.v1.resources.WhoisRegistrant import WhoisRegistrant
 from et_api.v1.resources.WhoisRegistrar import WhoisRegistrar
-from src.et_api.v1.resources.Dictionary import Dictionary
+from et_api.web.Dictionary import Dictionary
 
 
 class Whois(Dictionary):

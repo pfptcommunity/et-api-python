@@ -5,40 +5,41 @@ Author: Ludvik Jerabek
 Package: et_api
 License: MIT
 """
-from et_api.v1.resources.ConnectionInfoCollection import ConnectionInfoCollection
-from et_api.v1.resources.DNSInfoCollection import DNSInfoCollection
-from et_api.v1.resources.HTTPInfoCollection import HTTPInfoCollection
-from et_api.v1.resources.IDSEventInfoCollection import IDSEventInfoCollection
+
+from et_api.v1.resources.ConnectionInfo import ConnectionInfo
+from et_api.v1.resources.DNSInfo import DNSInfo
+from et_api.v1.resources.HTTPInfo import HTTPInfo
+from et_api.v1.resources.IDSEventInfo import IDSEventInfo
 from et_api.web import DictionaryResource
+from et_api.web.DictionaryCollection import DictionaryCollection
 from src.et_api.v1.resources.MalwareInfo import MalwareInfo
-from src.et_api.web.CollectionResource import CollectionResource
 
 
 class Sample(DictionaryResource[MalwareInfo]):
-    __connections: CollectionResource[ConnectionInfoCollection]
-    __dns: CollectionResource[DNSInfoCollection]
-    __ids_events: CollectionResource[IDSEventInfoCollection]
-    __http: CollectionResource[HTTPInfoCollection]
+    __connections: DictionaryCollection[ConnectionInfo]
+    __dns: DictionaryCollection[DNSInfo]
+    __ids_events: DictionaryCollection[IDSEventInfo]
+    __http: DictionaryCollection[HTTPInfo]
 
     def __init__(self, parent, uri: str):
         super().__init__(parent, uri, MalwareInfo)
-        self.__connections = CollectionResource[ConnectionInfoCollection](self, "connections", ConnectionInfoCollection)
-        self.__dns = CollectionResource[DNSInfoCollection](self, "dns", DNSInfoCollection)
-        self.__ids_events = CollectionResource[IDSEventInfoCollection](self, "events", IDSEventInfoCollection)
-        self.__http = CollectionResource[HTTPInfoCollection](self, "http", HTTPInfoCollection)
+        self.__connections = DictionaryCollection[ConnectionInfo](self, "connections", ConnectionInfo)
+        self.__dns = DictionaryCollection[DNSInfo](self, "dns", DNSInfo)
+        self.__ids_events = DictionaryCollection[IDSEventInfo](self, "events", IDSEventInfo)
+        self.__http = DictionaryCollection[HTTPInfo](self, "http", HTTPInfo)
 
     @property
-    def connections(self) -> CollectionResource[ConnectionInfoCollection]:
+    def connections(self) -> DictionaryCollection[ConnectionInfo]:
         return self.__connections
 
     @property
-    def dns(self) -> CollectionResource[DNSInfoCollection]:
+    def dns(self) -> DictionaryCollection[DNSInfo]:
         return self.__dns
 
     @property
-    def ids_events(self) -> CollectionResource[IDSEventInfoCollection]:
+    def ids_events(self) -> DictionaryCollection[IDSEventInfo]:
         return self.__ids_events
 
     @property
-    def http(self) -> CollectionResource[HTTPInfoCollection]:
+    def http(self) -> DictionaryCollection[HTTPInfo]:
         return self.__http

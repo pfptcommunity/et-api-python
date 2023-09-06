@@ -9,6 +9,8 @@ License: MIT
 from requests import Response
 from requests.adapters import HTTPAdapter, Retry
 
+from et_api.v1.resources.CategoryInfo import CategoryInfo
+from et_api.web.DictionaryCollection import DictionaryCollection
 from src.et_api.v1.endpoints import *
 from src.et_api.web.Resource import Resource
 
@@ -16,11 +18,11 @@ from src.et_api.web.Resource import Resource
 class Client(Resource):
     __api_token: str
     __raise_for_status: bool
-    __reputation_categories: ReputationCategories = None
-    __domains: Domains = None
-    __ips: IPs = None
-    __samples: Samples = None
-    __sids: Sids = None
+    __reputation_categories: DictionaryCollection[CategoryInfo]
+    __domains: Domains
+    __ips: IPs
+    __samples: Samples
+    __sids: Sids
 
     def __session_hook(self, response: Response, **kwargs) -> Response:
         if response.status_code == 401:
@@ -55,7 +57,7 @@ class Client(Resource):
         self._session.mount('https://', HTTPAdapter(max_retries=retries))
         self._session.hooks = {"response": self.__session_hook}
         self._session.headers.update({'Authorization': api_token})
-        self.__reputation_categories = ReputationCategories(self, "repcategories")
+        self.__reputation_categories = DictionaryCollection[CategoryInfo](self, "repcategories", CategoryInfo)
         self.__domains = Domains(self, "domains")
         self.__ips = IPs(self, "ips")
         self.__samples = Samples(self, "samples")
@@ -66,7 +68,7 @@ class Client(Resource):
         return self.__api_token
 
     @property
-    def reputation_categories(self) -> ReputationCategories:
+    def reputation_categories(self) -> DictionaryCollection[CategoryInfo]:
         return self.__reputation_categories
 
     @property

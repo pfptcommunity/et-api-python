@@ -10,14 +10,22 @@ from requests import Response
 from et_api.web.Dictionary import Dictionary
 
 
-class SidInfo(Dictionary):
+class SigDocInfo(Dictionary):
     def __init__(self, response: Response):
         super().__init__(response)
 
     @property
     def sid(self) -> str:
-        return self.get_response().get('sid', None)
+        return self.get('sid', None)
 
     @property
-    def sig_name(self) -> str:
-        return self.get_response().get('sig_name', None)
+    def summary(self) -> str:
+        return self.get('summary')
+
+    @property
+    def description(self) -> str:
+        return self.get('description')
+
+    @property
+    def impact(self) -> str:
+        return self.get('impact')
