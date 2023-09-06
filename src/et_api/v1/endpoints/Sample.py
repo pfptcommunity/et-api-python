@@ -5,40 +5,40 @@ Author: Ludvik Jerabek
 Package: et_api
 License: MIT
 """
-from src.et_api.v1.resources.SampleInfo import SampleInfo
+from et_api.v1.resources.ConnectionInfoCollection import ConnectionInfoCollection
+from et_api.v1.resources.DNSInfoCollection import DNSInfoCollection
+from et_api.v1.resources.HTTPInfoCollection import HTTPInfoCollection
+from et_api.v1.resources.IDSEventInfoCollection import IDSEventInfoCollection
+from et_api.web import DictionaryResource
+from src.et_api.v1.resources.MalwareInfo import MalwareInfo
 from src.et_api.web.CollectionResource import CollectionResource
-from src.et_api.web.DictionaryResource import DictionaryResource
 
 
-class Sample(DictionaryResource[SampleInfo]):
-    __connections: CollectionResource = None
-    __dns: CollectionResource = None
-    __events: CollectionResource = None
-    __http: CollectionResource = None
+class Sample(DictionaryResource[MalwareInfo]):
+    __connections: CollectionResource[ConnectionInfoCollection]
+    __dns: CollectionResource[DNSInfoCollection]
+    __ids_events: CollectionResource[IDSEventInfoCollection]
+    __http: CollectionResource[HTTPInfoCollection]
 
     def __init__(self, parent, uri: str):
-        super().__init__(parent, uri, SampleInfo)
-        self.__connections = CollectionResource(self, "connections")
-        self.__dns = CollectionResource(self, "dns")
-        self.__events = CollectionResource(self, "events")
-        self.__http = CollectionResource(self, "http")
+        super().__init__(parent, uri, MalwareInfo)
+        self.__connections = CollectionResource[ConnectionInfoCollection](self, "connections", ConnectionInfoCollection)
+        self.__dns = CollectionResource[DNSInfoCollection](self, "dns", DNSInfoCollection)
+        self.__ids_events = CollectionResource[IDSEventInfoCollection](self, "events", IDSEventInfoCollection)
+        self.__http = CollectionResource[HTTPInfoCollection](self, "http", HTTPInfoCollection)
 
     @property
-    def info(self) -> SampleInfo:
-        return self()
-
-    @property
-    def connections(self) -> CollectionResource:
+    def connections(self) -> CollectionResource[ConnectionInfoCollection]:
         return self.__connections
 
     @property
-    def dns(self) -> CollectionResource:
+    def dns(self) -> CollectionResource[DNSInfoCollection]:
         return self.__dns
 
     @property
-    def events(self) -> CollectionResource:
-        return self.__events
+    def ids_events(self) -> CollectionResource[IDSEventInfoCollection]:
+        return self.__ids_events
 
     @property
-    def http(self) -> CollectionResource:
+    def http(self) -> CollectionResource[HTTPInfoCollection]:
         return self.__http

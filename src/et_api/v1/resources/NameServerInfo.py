@@ -8,13 +8,13 @@ License: MIT
 from typing import Dict
 
 
-class SampleInfo(Dict):
+class NameServerInfo(Dict):
     def __init__(self, data: dict):
         super().__init__(data)
 
     @property
-    def source(self) -> str:
-        return self.get('source', None)
+    def server(self) -> str:
+        return self.get('server', None)
 
     @property
     def first_seen(self) -> str:

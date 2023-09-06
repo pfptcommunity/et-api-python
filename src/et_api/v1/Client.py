@@ -7,6 +7,7 @@ License: MIT
 """
 
 from requests import Response
+from requests.adapters import HTTPAdapter, Retry
 
 from src.et_api.v1.endpoints import *
 from src.et_api.web.Resource import Resource
@@ -44,6 +45,14 @@ class Client(Resource):
         super().__init__(None, "https://api.emergingthreats.net/v1/")
         self.__api_token = api_token
         self.__raise_for_status = raise_for_status
+        # for method in ("get", "options", "head", "post", "put", "patch", "delete"):
+        #     setattr(
+        #         self._session,
+        #         method,
+        #         functools.partial(getattr(self._session, method), timeout=180),
+        #     )
+        retries = Retry(total=20, backoff_factor=1, status_forcelist=[429])
+        self._session.mount('https://', HTTPAdapter(max_retries=retries))
         self._session.hooks = {"response": self.__session_hook}
         self._session.headers.update({'Authorization': api_token})
         self.__reputation_categories = ReputationCategories(self, "repcategories")

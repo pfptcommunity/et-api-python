@@ -5,12 +5,14 @@ Author: Ludvik Jerabek
 Package: et_api
 License: MIT
 """
-from typing import List
+from typing import List, TypeVar
 
 from requests import Response
 
+T = TypeVar('T')
 
-class Collection(List):
+
+class Collection(List[T]):
     __response: Response
 
     def __init__(self, response: Response):

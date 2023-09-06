@@ -10,13 +10,12 @@ from typing import Dict
 from requests import Response
 
 
-class Dictionary(dict):
+class Dictionary(Dict):
     __response: Response
 
     def __init__(self, response: Response):
         super().__init__(response.json().get('response', {}))
         self.__response = response
-        print(response.json())
 
     def get_response(self) -> Dict:
         return self.__response.json().get('response', {})

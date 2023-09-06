@@ -8,13 +8,13 @@ License: MIT
 from typing import Dict
 
 
-class SampleInfo(Dict):
+class IPInfo(Dict):
     def __init__(self, data: dict):
         super().__init__(data)
 
     @property
-    def source(self) -> str:
-        return self.get('source', None)
+    def ip(self) -> str:
+        return self.get('ip', None)
 
     @property
     def first_seen(self) -> str:

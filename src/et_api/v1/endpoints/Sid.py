@@ -28,10 +28,6 @@ class Sid(DictionaryResource[SidInfo]):
         self.__references = DictionaryResource(self, "references")
 
     @property
-    def info(self) -> SidInfo:
-        return self()
-
-    @property
     def ips(self) -> CollectionResource:
         return self.__ips
 

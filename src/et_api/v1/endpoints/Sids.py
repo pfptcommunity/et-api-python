@@ -13,5 +13,5 @@ class Sids(Resource):
     def __init__(self, parent, uri: str):
         super().__init__(parent, uri)
 
-    def __call__(self, md5: str) -> Sid:
-        return Sid(self, md5.casefold().strip())
+    def __call__(self, sid: str) -> Sid:
+        return Sid(self, sid.casefold().strip())

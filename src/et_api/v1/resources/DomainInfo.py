@@ -8,13 +8,13 @@ License: MIT
 from typing import Dict
 
 
-class SampleInfo(Dict):
+class DomainInfo(Dict):
     def __init__(self, data: dict):
         super().__init__(data)
 
     @property
-    def source(self) -> str:
-        return self.get('source', None)
+    def domain(self) -> str:
+        return self.get('domain', None)
 
     @property
     def first_seen(self) -> str:
