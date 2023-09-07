@@ -20,6 +20,6 @@ dependencies = [
 
 [project.urls]
 repository = "https://github.com/pfptcommunity/et-api-python"
-#homepage = "https://github.com/pfptcommunity/et-api-python"
+homepage = "https://apidocs.emergingthreats.net"
 #documentation = "https://github.com/pfptcommunity/et-api-python"
 #changelog = "https://github.com/pfptcommunity/et-api-python"
