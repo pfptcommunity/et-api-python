@@ -5,7 +5,7 @@ from et_api.common import *
 if __name__ == '__main__':
     api_key_file = open("et.api_key", "r")
     api_key = api_key_file.read()
-    client = Client(api_key, True)
+    client = Client(api_key)
 
     # Get all the reputation categories
     for category in client.reputation_categories():

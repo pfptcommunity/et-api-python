@@ -5,13 +5,12 @@ Author: Ludvik Jerabek
 Package: et_api
 License: MIT
 """
-
-from requests import Response
 from requests.adapters import HTTPAdapter
 from requests.adapters import Retry
 
 from et_api.v1.resources.CategoryInfo import CategoryInfo
 from et_api.web.DictionaryCollection import DictionaryCollection
+from et_api.web.ErrorHandler import ErrorHandler
 from src.et_api.v1.endpoints import *
 from src.et_api.web.Resource import Resource
 
@@ -34,40 +33,21 @@ class TimeoutHTTPAdapter(HTTPAdapter):
 
 class Client(Resource):
     __api_token: str
-    __raise_for_status: bool
+    __error_handler: ErrorHandler
     __reputation_categories: DictionaryCollection[CategoryInfo]
     __domains: Domains
     __ips: IPs
     __samples: Samples
     __sids: Sids
 
-    def __session_hook(self, response: Response, **kwargs) -> Response:
-        if response.status_code == 401:
-            response.reason = "Unauthorized -- You did not provide an API key"
-        elif response.status_code == 403:
-            response.reason = "Forbidden -- The API key does not have access to the requested action or your subscription has elapsed."
-        elif response.status_code == 404:
-            response.reason = "Not Found -- The requested action does not exist."
-        elif response.status_code == 408:
-            response.reason = "Request Timeout -- The request took too long to complete on our side. Please reduce the amount of information you are requesting, or try again later."
-        elif response.status_code == 429:
-            response.reason = "Request Timeout -- The request took too long to complete on our side. Please reduce the amount of information you are requesting, or try again later."
-        elif response.status_code == 500:
-            response.reason = "Internal Server Error -- We had a problem internal to our systems. Please try again later."
-
-        if self.__raise_for_status:
-            response.raise_for_status()
-
-        return response
-
-    def __init__(self, api_token: str, raise_for_status: bool = False):
+    def __init__(self, api_token: str):
         super().__init__(None, "https://api.emergingthreats.net/v1/")
         self.__api_token = api_token
-        self.__raise_for_status = raise_for_status
         retries = Retry(total=20, backoff_factor=1, status_forcelist=[429, 408])
         self.session.mount('https://', TimeoutHTTPAdapter(max_retries=retries))
-        self.session.hooks = {"response": self.__session_hook}
         self.session.headers.update({'Authorization': api_token})
+        self.__error_handler = ErrorHandler()
+        self.session.hooks = {"response": self.__error_handler.handler}
         self.__reputation_categories = DictionaryCollection[CategoryInfo](self, "repcategories", CategoryInfo)
         self.__domains = Domains(self, "domains")
         self.__ips = IPs(self, "ips")
@@ -101,3 +81,11 @@ class Client(Resource):
     @timeout.setter
     def timeout(self, timeout):
         self.session.adapters.get('https://').timeout = timeout
+
+    @property
+    def error_handler(self) -> ErrorHandler:
+        return self.__error_handler
+
+    @error_handler.setter
+    def error_handler(self, error_handler: ErrorHandler):
+        self.__error_handler = error_handler
