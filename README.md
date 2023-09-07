@@ -53,14 +53,14 @@ from et_api.v1 import *
 if __name__ == '__main__':
     client = Client("<enter_your_api_key_here>")
 
-    for reputation in client.domains("yahoo").reputation():
+    for reputation in client.domains("yahoo.com").reputation():
         print(reputation)
 
     for url in client.domains("yahoo.com").urls():
         print("URL: ", url)
 
     for sample in client.domains("yahoo.com").samples():
-        print("URL: ", sample)
+        print("Sample: ", sample)
 
     for ips in client.domains("yahoo.com").ips():
         print("IPs: ", ips)
@@ -71,12 +71,8 @@ if __name__ == '__main__':
     for ns in client.domains("yahoo.com").nameservers():
         print("Nameserver: ", ns)
 
-    whois = client.domains("yahoo.com").whois()
-    for key, value in whois.items():
+    for key, value in client.domains("yahoo.com").whois().items():
         print("{} = {}".format(key, value))
-
-    for geo in client.domains("yahoo.com").geo_location():
-        print("Geoloc: ", geo)
 ```
 
 ### Querying IP Information
@@ -86,22 +82,25 @@ from et_api.v1 import *
 if __name__ == '__main__':
     client = Client("<enter_your_api_key_here>")
 
-    for reputation in client.ips("98.137.11.164").reputation():
-        print(reputation)
+     # Get IP Information
+    ip = "98.137.11.164"
+    
+    for reputation in client.ips(ip).reputation():
+        print("Reputation:", reputation)
 
-    for url in client.ips("98.137.11.164").urls():
+    for url in client.ips(ip).urls():
         print("URL: ", url)
 
-    for sample in client.ips("98.137.11.164").samples():
+    for sample in client.ips(ip).samples():
         print("Sample: ", sample)
 
-    for domain in client.ips("98.137.11.164").domains():
+    for domain in client.ips(ip).domains():
         print("Domain: ", domain)
 
-    for event in client.ips("98.137.11.164").events():
+    for event in client.ips(ip).events():
         print("Event: ", event)
 
-    for geo in client.ips("98.137.11.164").geo_location():
+    for geo in client.ips(ip).geo_location():
         print("Geo: ", geo)
 ```
 
@@ -111,9 +110,68 @@ from et_api.v1 import *
 
 if __name__ == '__main__':
     client = Client("<enter_your_api_key_here>")
+    
+      # Get Malware Samples
+    md5 = "cd88c95ca03b86d9ca32f322d69a7ee9"
 
+    details = client.samples(md5)()
+    print("details:", details)
 
+    for connection in client.samples(md5).connections():
+        print("Connection:", connection)
+
+    for event in client.samples(md5).ids_events():
+        print("Event:", event)
+
+    for dns in client.samples(md5).dns():
+        print("DNS:", dns)
+
+    for http in client.samples(md5).http():
+        print("HTTP:", http)
 ```
+
+### Querying Malware Samples
+```python
+from et_api.v1 import *
+from et_api.common import *
+
+if __name__ == '__main__':
+    client = Client("<enter_your_api_key_here>")
+    
+    sid = "2012199"
+
+    info = client.sids(sid)()
+    print("SigInfo:", info.sid, '-->', info.name)
+
+    f = IPFilter()
+    
+    # SortBy and SortOrder are located in et_api.common
+    f.set_sort_by(SortBy.LAST_SEEN)
+    f.set_sort_direction(SortOrder.ASCENDING)
+
+    for ip in client.sids(sid).ips(f):
+        print("IP:", ip)
+
+    for domain in client.sids(sid).domains():
+        print("Domain:", domain)
+
+    for sample in client.sids(sid).samples():
+        print("Sample:", sample)
+
+    for key, value in client.sids(sid).signature().items():
+        print("{} = {}".format(key, value))
+   
+    for key, value in client.sids(sid).documentation().items():
+        print("{} = {}".format(key, value))
+   
+    for ref in client.sids(sid).references():
+        print("Type:", ref.type)
+        print("Description:", ref.description)
+        print("Urls:", ref.urls)
+```
+
+### Type Hinting and Auto Completion Helpers
+All dictionaries and lists have helper properties to prevent needing to identify the key values associated.
 
 ### Limitations
 There are currently no known limitations. 

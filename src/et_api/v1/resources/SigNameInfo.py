@@ -10,7 +10,7 @@ from requests import Response
 from et_api.web.Dictionary import Dictionary
 
 
-class SidInfo(Dictionary):
+class SigNameInfo(Dictionary):
     def __init__(self, response: Response):
         super().__init__(response)
 
@@ -19,5 +19,5 @@ class SidInfo(Dictionary):
         return self.get_response().get('sid', None)
 
     @property
-    def sig_name(self) -> str:
+    def name(self) -> str:
         return self.get_response().get('sig_name', None)

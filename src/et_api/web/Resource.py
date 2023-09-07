@@ -7,6 +7,7 @@ License: MIT
 """
 from posixpath import join
 from typing import TypeVar, Union
+
 from requests import Session
 
 TResource = TypeVar('TResource', bound=Union['Resource', None])

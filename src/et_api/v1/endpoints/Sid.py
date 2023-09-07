@@ -6,18 +6,18 @@ Package: et_api
 License: MIT
 """
 from et_api.v1.resources.DomainInfo import DomainInfo
-from et_api.v1.resources.IPInfoEx import IPInfoEx
 from et_api.v1.resources.SampleInfo import SampleInfo
 from et_api.v1.resources.SidDocInfo import SigDocInfo
-from et_api.v1.resources.SigRefInfo import SigRefInfo
+from et_api.v1.resources.SigIPInfo import SigIPInfo
 from et_api.v1.resources.SigInfo import SigInfo
+from et_api.v1.resources.SigRefInfo import SigRefInfo
 from et_api.web.DictionaryCollection import DictionaryCollection
-from src.et_api.v1.resources.SidInfo import SidInfo
+from src.et_api.v1.resources.SigNameInfo import SigNameInfo
 from src.et_api.web.DictionaryResource import DictionaryResource
 
 
-class Sid(DictionaryResource[SidInfo]):
-    __ips: DictionaryCollection[IPInfoEx]
+class Sid(DictionaryResource[SigNameInfo]):
+    __ips: SigIPInfo
     __domains: DictionaryCollection[DomainInfo]
     __samples: DictionaryCollection[SampleInfo]
     __signature_info: DictionaryResource[SigInfo]
@@ -25,8 +25,8 @@ class Sid(DictionaryResource[SidInfo]):
     __references: DictionaryCollection[SigRefInfo]
 
     def __init__(self, parent, uri: str):
-        super().__init__(parent, uri, SidInfo)
-        self.__ips = DictionaryCollection[IPInfoEx](self, "ips", IPInfoEx)
+        super().__init__(parent, uri, SigNameInfo)
+        self.__ips = SigIPInfo(self, "ips")
         self.__domains = DictionaryCollection[DomainInfo](self, "domains", DomainInfo)
         self.__samples = DictionaryCollection[SampleInfo](self, "samples", SampleInfo)
         self.__signature_info = DictionaryResource[SigInfo](self, "text", SigInfo)
@@ -34,7 +34,7 @@ class Sid(DictionaryResource[SidInfo]):
         self.__references = DictionaryCollection[SigRefInfo](self, "references", SigRefInfo)
 
     @property
-    def ips(self) -> DictionaryCollection[IPInfoEx]:
+    def ips(self) -> SigIPInfo:
         return self.__ips
 
     @property

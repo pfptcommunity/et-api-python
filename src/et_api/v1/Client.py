@@ -7,12 +7,27 @@ License: MIT
 """
 
 from requests import Response
-from requests.adapters import HTTPAdapter, Retry
+from requests.adapters import HTTPAdapter
+from requests.adapters import Retry
 
 from et_api.v1.resources.CategoryInfo import CategoryInfo
 from et_api.web.DictionaryCollection import DictionaryCollection
 from src.et_api.v1.endpoints import *
 from src.et_api.web.Resource import Resource
+
+
+class TimeoutHTTPAdapter(HTTPAdapter):
+    def __init__(self, *args, **kwargs):
+        if "timeout" in kwargs:
+            self.timeout = kwargs["timeout"]
+            del kwargs["timeout"]
+        super().__init__(*args, **kwargs)
+
+    def send(self, request, **kwargs):
+        timeout = kwargs.get("timeout")
+        if timeout is None and hasattr(self, 'timeout'):
+            kwargs["timeout"] = self.timeout
+        return super().send(request, **kwargs)
 
 
 class Client(Resource):
@@ -47,14 +62,8 @@ class Client(Resource):
         super().__init__(None, "https://api.emergingthreats.net/v1/")
         self.__api_token = api_token
         self.__raise_for_status = raise_for_status
-        # for method in ("get", "options", "head", "post", "put", "patch", "delete"):
-        #     setattr(
-        #         self._session,
-        #         method,
-        #         functools.partial(getattr(self._session, method), timeout=180),
-        #     )
-        retries = Retry(total=20, backoff_factor=1, status_forcelist=[429])
-        self._session.mount('https://', HTTPAdapter(max_retries=retries))
+        retries = Retry(total=20, backoff_factor=1, status_forcelist=[429, 408])
+        self._session.mount('https://', TimeoutHTTPAdapter(max_retries=retries))
         self._session.hooks = {"response": self.__session_hook}
         self._session.headers.update({'Authorization': api_token})
         self.__reputation_categories = DictionaryCollection[CategoryInfo](self, "repcategories", CategoryInfo)
@@ -62,7 +71,6 @@ class Client(Resource):
         self.__ips = IPs(self, "ips")
         self.__samples = Samples(self, "samples")
         self.__sids = Sids(self, "sids")
-
 
     @property
     def reputation_categories(self) -> DictionaryCollection[CategoryInfo]:
