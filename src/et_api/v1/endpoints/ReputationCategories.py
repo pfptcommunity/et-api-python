@@ -15,4 +15,4 @@ class ReputationCategories(Resource):
         super().__init__(parent, uri)
 
     def __call__(self) -> DictionaryCollection[CategoryInfo]:
-        return DictionaryCollection[CategoryInfo](self._session.get(self.uri))
+        return DictionaryCollection[CategoryInfo](self.session.get(self.uri))

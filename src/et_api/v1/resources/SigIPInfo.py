@@ -9,7 +9,7 @@ class SigIPInfo(Resource):
         super().__init__(parent, uri)
 
     def __call__(self, options: IPFilter = IPFilter()) -> Collection[IPInfoEx]:
-        collection = Collection[IPInfoEx](self._session.get(self.uri, params=options.params))
+        collection = Collection[IPInfoEx](self.session.get(self.uri, params=options.params))
         for idx, x in enumerate(collection):
             collection[idx] = IPInfoEx(x)
         return collection

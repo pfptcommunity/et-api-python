@@ -17,6 +17,8 @@ from src.et_api.web.Resource import Resource
 
 
 class TimeoutHTTPAdapter(HTTPAdapter):
+    timeout = None
+
     def __init__(self, *args, **kwargs):
         if "timeout" in kwargs:
             self.timeout = kwargs["timeout"]
@@ -63,9 +65,9 @@ class Client(Resource):
         self.__api_token = api_token
         self.__raise_for_status = raise_for_status
         retries = Retry(total=20, backoff_factor=1, status_forcelist=[429, 408])
-        self._session.mount('https://', TimeoutHTTPAdapter(max_retries=retries))
-        self._session.hooks = {"response": self.__session_hook}
-        self._session.headers.update({'Authorization': api_token})
+        self.session.mount('https://', TimeoutHTTPAdapter(max_retries=retries))
+        self.session.hooks = {"response": self.__session_hook}
+        self.session.headers.update({'Authorization': api_token})
         self.__reputation_categories = DictionaryCollection[CategoryInfo](self, "repcategories", CategoryInfo)
         self.__domains = Domains(self, "domains")
         self.__ips = IPs(self, "ips")
@@ -91,3 +93,11 @@ class Client(Resource):
     @property
     def sids(self) -> Sids:
         return self.__sids
+
+    @property
+    def timeout(self):
+        return self.session.adapters.get('https://').timeout
+
+    @timeout.setter
+    def timeout(self, timeout):
+        self.session.adapters.get('https://').timeout = timeout

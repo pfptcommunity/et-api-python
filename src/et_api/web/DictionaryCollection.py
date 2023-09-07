@@ -21,7 +21,7 @@ class DictionaryCollection(Generic[D], Resource):
         self.__dictionary_type = dictionary_type
 
     def __call__(self) -> Collection[D]:
-        collection = Collection(self._session.get(self.uri))
+        collection = Collection(self.session.get(self.uri))
         for idx, x in enumerate(collection):
             collection[idx] = self.__dictionary_type(x)
         return collection
