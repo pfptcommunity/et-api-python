@@ -1,6 +1,5 @@
-from et_api.v1 import *
 from et_api.common import *
-
+from et_api.v1 import *
 
 if __name__ == '__main__':
     api_key_file = open("et.api_key", "r")

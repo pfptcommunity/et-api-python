@@ -22,4 +22,4 @@ class DictionaryResource(Generic[T], Resource):
         self.__dict_type = dict_type
 
     def __call__(self) -> T:
-        return self.__dict_type(self.session.get(self.uri,timeout=(900,900)))
+        return self.__dict_type(self.session.get(self.uri))

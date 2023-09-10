@@ -6,25 +6,32 @@ Library implements all of the functions of the ET API via Python.
 
 * Python 3.9+
 * requests
- 
+
 ### Installing the Package
+
 You can install the API library using the following command directly from Github.
+
 ```
 pip install git+https://github.com/pfptcommunity/et-api-python.git
 ```
+
 or can install the API library using pip.
+
 ```
 pip install et-api
 ```
 
 ### ET API Versions
-Selecting the version of the ET API is done at time of import 
+
+Selecting the version of the ET API is done at time of import
+
 ```python
 # Version 1
 from et_api.v1 import *
 ```
 
 ### Creating an API client object
+
 ```python
 from et_api.v1 import *
 
@@ -33,6 +40,7 @@ if __name__ == '__main__':
 ```
 
 ### Querying Reputation Categories
+
 ```python
 from et_api.v1 import *
 
@@ -45,8 +53,8 @@ if __name__ == '__main__':
         print(category)
 ```
 
-
 ### Querying Domain Information
+
 ```python
 from et_api.v1 import *
 
@@ -76,15 +84,16 @@ if __name__ == '__main__':
 ```
 
 ### Querying IP Information
+
 ```python
 from et_api.v1 import *
 
 if __name__ == '__main__':
     client = Client("<enter_your_api_key_here>")
 
-     # Get IP Information
+    # Get IP Information
     ip = "98.137.11.164"
-    
+
     for reputation in client.ips(ip).reputation():
         print("Reputation:", reputation)
 
@@ -105,13 +114,14 @@ if __name__ == '__main__':
 ```
 
 ### Querying Malware Samples
+
 ```python
 from et_api.v1 import *
 
 if __name__ == '__main__':
     client = Client("<enter_your_api_key_here>")
-    
-      # Get Malware Samples
+
+    # Get Malware Samples
     md5 = "cd88c95ca03b86d9ca32f322d69a7ee9"
 
     details = client.samples(md5)()
@@ -131,20 +141,21 @@ if __name__ == '__main__':
 ```
 
 ### Querying Malware Samples
+
 ```python
 from et_api.v1 import *
 from et_api.common import *
 
 if __name__ == '__main__':
     client = Client("<enter_your_api_key_here>")
-    
+
     sid = "2012199"
 
     info = client.sids(sid)()
     print("SigInfo:", info.sid, '-->', info.name)
 
     f = IPFilter()
-    
+
     # SortBy and SortOrder are located in et_api.common
     f.set_sort_by(SortBy.LAST_SEEN)
     f.set_sort_direction(SortOrder.ASCENDING)
@@ -160,10 +171,10 @@ if __name__ == '__main__':
 
     for key, value in client.sids(sid).signature().items():
         print("{} = {}".format(key, value))
-   
+
     for key, value in client.sids(sid).documentation().items():
         print("{} = {}".format(key, value))
-   
+
     for ref in client.sids(sid).references():
         print("Type:", ref.type)
         print("Description:", ref.description)
@@ -171,9 +182,11 @@ if __name__ == '__main__':
 ```
 
 ### Type Hinting and Auto Completion Helpers
+
 All dictionaries and lists have helper properties to prevent needing to identify the key values associated.
 
 ### Limitations
-There are currently no known limitations. 
+
+There are currently no known limitations.
 
 For more information please see: https://apidocs.emergingthreats.net/#introduction
