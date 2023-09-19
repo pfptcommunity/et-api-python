@@ -19,6 +19,7 @@ class Resource:
     __session = Session()
 
     def __init__(self, parent: TResource, uri: str):
+        assert (isinstance(parent, Resource) or parent is None), "Parent must be valid TResource"
         self.__parent = parent
         self.__name = uri
 
