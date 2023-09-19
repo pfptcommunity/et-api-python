@@ -206,8 +206,10 @@ if __name__ == '__main__':
 from et_api.v1 import *
 if __name__ == '__main__':
     client = Client("<enter_your_api_key_here>")
-    # Timeout in seconds
+    # Timeout in seconds, connect timeout
     client.timeout = 600
+    # Timout advanced, connect / read timeout
+    client.timeout = (3.05, 27)
 ```
 
 ### Type Hinting and Auto Completion Helpers
