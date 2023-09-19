@@ -24,7 +24,7 @@ class ErrorHandler:
         elif response.status_code == 408:
             response.reason = "Request Timeout -- The request took too long to complete on our side. Please reduce the amount of information you are requesting, or try again later."
         elif response.status_code == 429:
-            response.reason = "Request Timeout -- The request took too long to complete on our side. Please reduce the amount of information you are requesting, or try again later."
+            response.reason = "Rate Limit Exceeded -- You have exceeded your provisioned rate limit. If this becomes a regular occurrence, please contact sales to have your rate limit increased."
         elif response.status_code == 500:
             response.reason = "Internal Server Error -- We had a problem internal to our systems. Please try again later."
 
