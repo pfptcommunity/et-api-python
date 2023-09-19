@@ -78,8 +78,8 @@ if __name__ == '__main__':
     print("SigInfo:", info.sid, '-->', info.name)
 
     f = IPFilter()
-    f.set_sort_by(SortBy.LAST_SEEN)
-    f.set_sort_direction(SortOrder.ASCENDING)
+    f.sort_by = SortBy.LAST_SEEN
+    f.sort_direction = SortOrder.ASCENDING
 
     for ip in client.sids(sid).ips(f):
         print("IP:", ip)
