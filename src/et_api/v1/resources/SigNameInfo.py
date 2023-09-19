@@ -16,8 +16,8 @@ class SigNameInfo(Dictionary):
 
     @property
     def sid(self) -> str:
-        return self.get_response().get('sid', None)
+        return self.response.get('sid', None)
 
     @property
     def name(self) -> str:
-        return self.get_response().get('sig_name', None)
+        return self.response.get('sig_name', None)
