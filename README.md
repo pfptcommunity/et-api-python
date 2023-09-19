@@ -200,6 +200,15 @@ if __name__ == '__main__':
 
 ```
 
+### HTTP Timeout Settings
+```python
+from et_api.v1 import *
+if __name__ == '__main__':
+    client = Client("<enter_your_api_key_here>")
+    # Timeout in seconds
+    client.timeout = 600
+```
+
 ### Type Hinting and Auto Completion Helpers
 
 All dictionaries and lists have helper properties to prevent needing to identify the key values associated.
