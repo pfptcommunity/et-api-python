@@ -6,6 +6,7 @@ Library implements all of the functions of the ET API via Python.
 
 * Python 3.9+
 * requests
+* pysocks
 
 ### Installing the Package
 

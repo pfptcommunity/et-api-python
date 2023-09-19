@@ -15,7 +15,8 @@ description = "Proofpoint Emerging Threats Python API Package"
 license = { text = "MIT" }
 requires-python = ">3.9"
 dependencies = [
-    'requests'
+    'requests',
+    'pysocks'
 ]
 
 [project.urls]
