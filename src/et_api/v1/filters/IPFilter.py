@@ -16,16 +16,28 @@ class IPFilter(FilterOptions):
     def __init__(self):
         super().__init__()
 
-    def set_sort_by(self, by: SortBy) -> TFilterOptions:
-        self._options[self.__SORT_BY] = by
-        return self
-
-    def get_sort_by(self) -> SortBy:
+    @property
+    def sort_by(self) -> SortBy:
         return self._options[self.__SORT_BY]
 
-    def set_sort_direction(self, order: SortOrder) -> TFilterOptions:
-        self._options[self.__SORT_ORDER] = order
+    @sort_by.setter
+    def sort_by(self, by: SortBy):
+        assert isinstance(by, SortBy)
+        self._options[self.__SORT_BY] = by
+
+    def set_sort_by(self, by: SortBy) -> TFilterOptions:
+        self.sort_by = by
         return self
 
-    def get_sort_direction(self) -> SortOrder:
+    @property
+    def sort_direction(self) -> SortOrder:
         return self._options[self.__SORT_ORDER]
+
+    @sort_direction.setter
+    def sort_direction(self, order: SortOrder):
+        assert isinstance(order, SortOrder)
+        self._options[self.__SORT_ORDER] = order
+
+    def set_sort_direction(self, order: SortOrder) -> TFilterOptions:
+        self.sort_direction = order
+        return self
