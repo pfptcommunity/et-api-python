@@ -208,7 +208,7 @@ if __name__ == '__main__':
     client = Client("<enter_your_api_key_here>")
     # Timeout in seconds, connect timeout
     client.timeout = 600
-    # Timout advanced, connect / read timeout
+    # Timeout advanced, connect / read timeout
     client.timeout = (3.05, 27)
 ```
 
