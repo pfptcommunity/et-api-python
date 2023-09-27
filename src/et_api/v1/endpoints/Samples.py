@@ -13,5 +13,5 @@ class Samples(Resource):
     def __init__(self, parent, uri: str):
         super().__init__(parent, uri)
 
-    def __call__(self, md5: str) -> Sample:
+    def __getitem__(self, md5: str) -> Sample:
         return Sample(self, md5.casefold().strip())

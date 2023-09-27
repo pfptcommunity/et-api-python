@@ -62,25 +62,25 @@ from et_api.v1 import *
 if __name__ == '__main__':
     client = Client("<enter_your_api_key_here>")
 
-    for reputation in client.domains("yahoo.com").reputation():
+    for reputation in client.domains["yahoo"].reputation():
         print(reputation)
 
-    for url in client.domains("yahoo.com").urls():
+    for url in client.domains["yahoo"].urls():
         print("URL: ", url)
 
-    for sample in client.domains("yahoo.com").samples():
+    for sample in client.domains["yahoo"].samples():
         print("Sample: ", sample)
 
-    for ips in client.domains("yahoo.com").ips():
+    for ips in client.domains["yahoo"].ips():
         print("IPs: ", ips)
 
-    for event in client.domains("yahoo.com").events():
+    for event in client.domains["yahoo"].events():
         print("Event: ", event)
 
-    for ns in client.domains("yahoo.com").nameservers():
+    for ns in client.domains["yahoo"].nameservers():
         print("Nameserver: ", ns)
 
-    for key, value in client.domains("yahoo.com").whois().items():
+    for key, value in client.domains["yahoo"].whois().items():
         print("{} = {}".format(key, value))
 ```
 
@@ -95,22 +95,22 @@ if __name__ == '__main__':
     # Get IP Information
     ip = "98.137.11.164"
 
-    for reputation in client.ips(ip).reputation():
+    for reputation in client.ips[ip].reputation():
         print("Reputation:", reputation)
 
-    for url in client.ips(ip).urls():
+    for url in client.ips[ip].urls():
         print("URL: ", url)
 
-    for sample in client.ips(ip).samples():
+    for sample in client.ips[ip].samples():
         print("Sample: ", sample)
 
-    for domain in client.ips(ip).domains():
+    for domain in client.ips[ip].domains():
         print("Domain: ", domain)
 
-    for event in client.ips(ip).events():
+    for event in client.ips[ip].events():
         print("Event: ", event)
 
-    for geo in client.ips(ip).geo_location():
+    for geo in client.ips[ip].geo_location():
         print("Geo: ", geo)
 ```
 
@@ -125,19 +125,19 @@ if __name__ == '__main__':
     # Get Malware Samples
     md5 = "cd88c95ca03b86d9ca32f322d69a7ee9"
 
-    details = client.samples(md5)()
+    details = client.samples[md5]()
     print("details:", details)
 
-    for connection in client.samples(md5).connections():
+    for connection in client.samples[md5].connections():
         print("Connection:", connection)
 
-    for event in client.samples(md5).ids_events():
+    for event in client.samples[md5].ids_events():
         print("Event:", event)
 
-    for dns in client.samples(md5).dns():
+    for dns in client.samples[md5].dns():
         print("DNS:", dns)
 
-    for http in client.samples(md5).http():
+    for http in client.samples[md5].http():
         print("HTTP:", http)
 ```
 
@@ -152,7 +152,7 @@ if __name__ == '__main__':
 
     sid = "2012199"
 
-    info = client.sids(sid)()
+    info = client.sids[sid]()
     print("SigInfo:", info.sid, '-->', info.name)
 
     f = IPFilter()
@@ -161,22 +161,22 @@ if __name__ == '__main__':
     f.sort_by = SortBy.LAST_SEEN
     f.sort_direction = SortOrder.ASCENDING
 
-    for ip in client.sids(sid).ips(f):
+    for ip in client.sids[sid].ips(f):
         print("IP:", ip)
 
-    for domain in client.sids(sid).domains():
+    for domain in client.sids[sid].domains():
         print("Domain:", domain)
 
-    for sample in client.sids(sid).samples():
+    for sample in client.sids[sid].samples():
         print("Sample:", sample)
 
-    for key, value in client.sids(sid).signature().items():
+    for key, value in client.sids[sid].signature().items():
         print("{} = {}".format(key, value))
 
-    for key, value in client.sids(sid).documentation().items():
+    for key, value in client.sids[sid].documentation().items():
         print("{} = {}".format(key, value))
 
-    for ref in client.sids(sid).references():
+    for ref in client.sids[sid].references():
         print("Type:", ref.type)
         print("Description:", ref.description)
         print("Urls:", ref.urls)

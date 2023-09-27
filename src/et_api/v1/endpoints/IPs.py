@@ -13,5 +13,6 @@ class IPs(Resource):
     def __init__(self, parent, uri: str):
         super().__init__(parent, uri)
 
-    def __call__(self, ip: str) -> IP:
+    def __getitem__(self, ip: str) -> IP:
         return IP(self, ip.casefold().strip())
+

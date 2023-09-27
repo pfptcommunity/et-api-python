@@ -9,7 +9,7 @@ namespaces = true
 
 [project]
 name = "et-api"
-version = "1.0.1"
+version = "1.0.2"
 readme = "README.md"
 description = "Proofpoint Emerging Threats Python API Package"
 license = { text = "MIT" }
