@@ -10,9 +10,9 @@ from et_api.v1.resources.ConnectionInfo import ConnectionInfo
 from et_api.v1.resources.DNSInfo import DNSInfo
 from et_api.v1.resources.HTTPInfo import HTTPInfo
 from et_api.v1.resources.IDSEventInfo import IDSEventInfo
+from et_api.v1.resources.MalwareInfo import MalwareInfo
 from et_api.web import DictionaryResource
 from et_api.web.DictionaryCollection import DictionaryCollection
-from src.et_api.v1.resources.MalwareInfo import MalwareInfo
 
 
 class Sample(DictionaryResource[MalwareInfo]):

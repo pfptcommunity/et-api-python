@@ -7,7 +7,7 @@ License: MIT
 """
 from et_api.v1.resources.CategoryInfo import CategoryInfo
 from et_api.web.DictionaryCollection import DictionaryCollection
-from src.et_api.web.Resource import Resource
+from et_api.web.Resource import Resource
 
 
 class ReputationCategories(Resource):

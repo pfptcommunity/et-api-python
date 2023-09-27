@@ -8,7 +8,7 @@ License: MIT
 from typing import TypeVar, Type, Dict, Generic
 
 from et_api.web.Collection import Collection
-from src.et_api.web.Resource import Resource
+from et_api.web.Resource import Resource
 
 D = TypeVar('D', bound='Dict')
 

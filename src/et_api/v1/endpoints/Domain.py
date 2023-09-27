@@ -12,11 +12,11 @@ from et_api.v1.resources.IPInfo import IPInfo
 from et_api.v1.resources.NameServerInfo import NameServerInfo
 from et_api.v1.resources.ReputationInfo import ReputationInfo
 from et_api.v1.resources.SampleInfo import SampleInfo
+from et_api.v1.resources.Whois import Whois
+from et_api.web.CollectionResource import CollectionResource
 from et_api.web.DictionaryCollection import DictionaryCollection
-from src.et_api.v1.resources.Whois import Whois
-from src.et_api.web.CollectionResource import CollectionResource
-from src.et_api.web.DictionaryResource import DictionaryResource
-from src.et_api.web.Resource import Resource
+from et_api.web.DictionaryResource import DictionaryResource
+from et_api.web.Resource import Resource
 
 
 class Domain(Resource):

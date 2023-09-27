@@ -8,11 +8,15 @@ License: MIT
 from requests.adapters import HTTPAdapter
 from requests.adapters import Retry
 
+from et_api.v1.endpoints.Domain import Domain
+from et_api.v1.endpoints.IP import IP
+from et_api.v1.endpoints.Sample import Sample
+from et_api.v1.endpoints.Sid import Sid
 from et_api.v1.resources.CategoryInfo import CategoryInfo
 from et_api.web.DictionaryCollection import DictionaryCollection
 from et_api.web.ErrorHandler import ErrorHandler
-from src.et_api.v1.endpoints import *
-from src.et_api.web.Resource import Resource
+from et_api.web.Resource import Resource
+from et_api.web.Resources import Resources
 
 
 class TimeoutHTTPAdapter(HTTPAdapter):
@@ -35,10 +39,10 @@ class Client(Resource):
     __api_token: str
     __error_handler: ErrorHandler
     __reputation_categories: DictionaryCollection[CategoryInfo]
-    __domains: Domains
-    __ips: IPs
-    __samples: Samples
-    __sids: Sids
+    __domains: Resources[Domain]
+    __ips: Resources[IP]
+    __samples: Resources[Sample]
+    __sids: Resources[Sid]
 
     def __init__(self, api_token: str):
         super().__init__(None, "https://api.emergingthreats.net/v1/")
@@ -49,29 +53,29 @@ class Client(Resource):
         self.__error_handler = ErrorHandler()
         self.session.hooks = {"response": self.__error_handler.handler}
         self.__reputation_categories = DictionaryCollection[CategoryInfo](self, "repcategories", CategoryInfo)
-        self.__domains = Domains(self, "domains")
-        self.__ips = IPs(self, "ips")
-        self.__samples = Samples(self, "samples")
-        self.__sids = Sids(self, "sids")
+        self.__domains = Resources[Domain](self, "domains", Domain)
+        self.__ips = Resources[IP](self, "ips", IP)
+        self.__samples = Resources[Sample](self, "samples", Sample)
+        self.__sids = Resources[Sid](self, "sids", Sid)
 
     @property
     def reputation_categories(self) -> DictionaryCollection[CategoryInfo]:
         return self.__reputation_categories
 
     @property
-    def domains(self) -> Domains:
+    def domains(self) -> Resources[Domain]:
         return self.__domains
 
     @property
-    def ips(self) -> IPs:
+    def ips(self) -> Resources[IP]:
         return self.__ips
 
     @property
-    def samples(self) -> Samples:
+    def samples(self) -> Resources[Sample]:
         return self.__samples
 
     @property
-    def sids(self) -> Sids:
+    def sids(self) -> Resources[Sid]:
         return self.__sids
 
     @property

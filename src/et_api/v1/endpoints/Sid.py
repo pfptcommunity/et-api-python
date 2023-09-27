@@ -10,10 +10,10 @@ from et_api.v1.resources.SampleInfo import SampleInfo
 from et_api.v1.resources.SidDocInfo import SigDocInfo
 from et_api.v1.resources.SigIPInfo import SigIPInfo
 from et_api.v1.resources.SigInfo import SigInfo
+from et_api.v1.resources.SigNameInfo import SigNameInfo
 from et_api.v1.resources.SigRefInfo import SigRefInfo
 from et_api.web.DictionaryCollection import DictionaryCollection
-from src.et_api.v1.resources.SigNameInfo import SigNameInfo
-from src.et_api.web.DictionaryResource import DictionaryResource
+from et_api.web.DictionaryResource import DictionaryResource
 
 
 class Sid(DictionaryResource[SigNameInfo]):
