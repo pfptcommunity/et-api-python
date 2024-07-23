@@ -2,13 +2,13 @@
 
 Library implements all of the functions of the ET API via Python.
 
-### Requirements:
+## Requirements:
 
 * Python 3.9+
 * requests
 * pysocks
 
-### Installing the Package
+## Installing the Package
 
 You can install the API library using the following command directly from Github.
 
@@ -22,7 +22,7 @@ or can install the API library using pip.
 pip install et-api
 ```
 
-### ET API Versions
+## ET API Versions
 
 Selecting the version of the ET API is done at time of import
 
@@ -31,7 +31,7 @@ Selecting the version of the ET API is done at time of import
 from et_api.v1 import *
 ```
 
-### Creating an API client object
+## Creating an API client object
 
 ```python
 from et_api.v1 import *
@@ -40,7 +40,7 @@ if __name__ == '__main__':
     client = Client("<enter_your_api_key_here>")
 ```
 
-### Querying Reputation Categories
+## Querying Reputation Categories
 
 ```python
 from et_api.v1 import *
@@ -54,7 +54,7 @@ if __name__ == '__main__':
         print(category)
 ```
 
-### Querying Domain Information
+## Querying Domain Information
 
 ```python
 from et_api.v1 import *
@@ -84,7 +84,7 @@ if __name__ == '__main__':
         print("{} = {}".format(key, value))
 ```
 
-### Querying IP Information
+## Querying IP Information
 
 ```python
 from et_api.v1 import *
@@ -114,7 +114,7 @@ if __name__ == '__main__':
         print("Geo: ", geo)
 ```
 
-### Querying Malware Samples
+## Querying Malware Samples
 
 ```python
 from et_api.v1 import *
@@ -141,7 +141,7 @@ if __name__ == '__main__':
         print("HTTP:", http)
 ```
 
-### Querying Malware Samples
+## Querying Malware Samples
 
 ```python
 from et_api.v1 import *
@@ -182,7 +182,7 @@ if __name__ == '__main__':
         print("Urls:", ref.urls)
 ```
 
-### Proxy Support
+## Proxy Support
 Socks5 Proxy Example:
 ```python
 from et_api.v1 import *
@@ -201,7 +201,7 @@ if __name__ == '__main__':
 
 ```
 
-### HTTP Timeout Settings
+## HTTP Timeout Settings
 ```python
 from et_api.v1 import *
 if __name__ == '__main__':
@@ -212,11 +212,11 @@ if __name__ == '__main__':
     client.timeout = (3.05, 27)
 ```
 
-### Type Hinting and Auto Completion Helpers
+## Type Hinting and Auto Completion Helpers
 
 All dictionaries and lists have helper properties to prevent needing to identify the key values associated.
 
-### Limitations
+## Limitations
 
 There are currently no known limitations.
 
