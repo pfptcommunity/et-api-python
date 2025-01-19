@@ -1,5 +1,5 @@
 # Proofpoint Emerging Threats API Package
-
+[![PyPI Downloads](https://static.pepy.tech/badge/et-api)](https://pepy.tech/projects/et-api)  
 Library implements all of the functions of the ET API via Python.
 
 ## Requirements:
