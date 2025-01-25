@@ -1,3 +1,8 @@
+"""
+Author: Ludvik Jerabek
+Package: et_api
+License: MIT
+"""
 from et_api.v1.filters.IPFilter import IPFilter
 from et_api.v1.resources.IPInfoEx import IPInfoEx
 from et_api.web import Resource
