@@ -5,8 +5,8 @@ License: MIT
 """
 from typing import TypeVar, Type, Generic
 
-from et_api.web.Collection import Collection
-from et_api.web.Resource import Resource
+from et_api.web.collection import Collection
+from et_api.web.resource import Resource
 
 T = TypeVar('T', bound=Collection)
 

@@ -1,6 +1,4 @@
 """
-This code was tested against Python 3.9
- 
 Author: Ludvik Jerabek
 Package: et_api
 License: MIT
@@ -8,15 +6,15 @@ License: MIT
 from requests.adapters import HTTPAdapter
 from requests.adapters import Retry
 
-from et_api.v1.endpoints.Domain import Domain
-from et_api.v1.endpoints.IP import IP
-from et_api.v1.endpoints.Sample import Sample
-from et_api.v1.endpoints.Sid import Sid
-from et_api.v1.resources.CategoryInfo import CategoryInfo
-from et_api.web.DictionaryCollection import DictionaryCollection
-from et_api.web.ErrorHandler import ErrorHandler
-from et_api.web.Resource import Resource
-from et_api.web.Resources import Resources
+from et_api.v1.endpoints.domain import Domain
+from et_api.v1.endpoints.ip import IP
+from et_api.v1.endpoints.sample import Sample
+from et_api.v1.endpoints.sid import Sid
+from et_api.v1.resources.category_info import CategoryInfo
+from et_api.web.dictionary_collection import DictionaryCollection
+from et_api.web.error_handler import ErrorHandler
+from et_api.web.resource import Resource
+from et_api.web.resources import Resources
 
 
 class TimeoutHTTPAdapter(HTTPAdapter):

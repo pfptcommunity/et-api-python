@@ -3,10 +3,10 @@ Author: Ludvik Jerabek
 Package: et_api
 License: MIT
 """
-from et_api.v1.filters.IPFilter import IPFilter
-from et_api.v1.resources.IPInfoEx import IPInfoEx
+from et_api.v1.filters.ip_filter import IPFilter
+from et_api.v1.resources.ip_info_ex import IPInfoEx
 from et_api.web import Resource
-from et_api.web.Collection import Collection
+from et_api.web.collection import Collection
 
 
 class SigIPInfo(Resource):

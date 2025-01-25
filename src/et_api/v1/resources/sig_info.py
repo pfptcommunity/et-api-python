@@ -5,7 +5,7 @@ License: MIT
 """
 from requests import Response
 
-from et_api.web.Dictionary import Dictionary
+from et_api.web.dictionary import Dictionary
 
 
 class SigInfo(Dictionary):

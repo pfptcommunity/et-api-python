@@ -4,7 +4,7 @@ Package: et-api
 License: MIT
 """
 from et_api.common import *
-from et_api.web.FilterOptions import FilterOptions, TFilterOptions
+from et_api.web.filter_options import FilterOptions, TFilterOptions
 
 
 class IPFilter(FilterOptions):

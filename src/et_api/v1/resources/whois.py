@@ -5,9 +5,9 @@ License: MIT
 """
 from requests import Response
 
-from et_api.v1.resources.WhoisRegistrant import WhoisRegistrant
-from et_api.v1.resources.WhoisRegistrar import WhoisRegistrar
-from et_api.web.Dictionary import Dictionary
+from et_api.v1.resources.whois_registrant import WhoisRegistrant
+from et_api.v1.resources.whois_registrar import WhoisRegistrar
+from et_api.web.dictionary import Dictionary
 
 
 class Whois(Dictionary):

@@ -5,7 +5,7 @@ License: MIT
 """
 
 from typing import TypeVar, Type, Generic
-from .Resource import Resource
+from .resource import Resource
 
 R = TypeVar('R', bound='Resource')
 

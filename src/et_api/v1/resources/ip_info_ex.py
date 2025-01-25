@@ -3,7 +3,7 @@ Author: Ludvik Jerabek
 Package: et_api
 License: MIT
 """
-from et_api.v1.resources.IPInfo import IPInfo
+from et_api.v1.resources.ip_info import IPInfo
 
 
 class IPInfoEx(IPInfo):

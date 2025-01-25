@@ -1,12 +1,11 @@
-from .Collection import Collection
-from .CollectionResource import CollectionResource
-from .Dictionary import Dictionary
-from .DictionaryCollection import DictionaryCollection
-from .DictionaryResource import DictionaryResource
-from .FilterOptions import FilterOptions
-from .FilterOptions import TFilterOptions
-from .Resource import Resource
-from .Resources import Resources
+from .collection import Collection
+from .collection_resource import CollectionResource
+from .dictionary import Dictionary
+from .dictionary_collection import DictionaryCollection
+from .dictionary_resource import DictionaryResource
+from .filter_options import FilterOptions, TFilterOptions
+from .resource import Resource
+from .resources import Resources
 
 
 __all__ = ['CollectionResource', 'DictionaryResource', 'DictionaryCollection', 'Resource', 'Collection', 'Dictionary',

@@ -3,15 +3,15 @@ Author: Ludvik Jerabek
 Package: et_api
 License: MIT
 """
-from et_api.v1.resources.DomainInfo import DomainInfo
-from et_api.v1.resources.SampleInfo import SampleInfo
-from et_api.v1.resources.SidDocInfo import SigDocInfo
-from et_api.v1.resources.SigIPInfo import SigIPInfo
-from et_api.v1.resources.SigInfo import SigInfo
-from et_api.v1.resources.SigNameInfo import SigNameInfo
-from et_api.v1.resources.SigRefInfo import SigRefInfo
-from et_api.web.DictionaryCollection import DictionaryCollection
-from et_api.web.DictionaryResource import DictionaryResource
+from et_api.v1.resources.domain_info import DomainInfo
+from et_api.v1.resources.sample_info import SampleInfo
+from et_api.v1.resources.sid_doc_info import SigDocInfo
+from et_api.v1.resources.sig_ip_info import SigIPInfo
+from et_api.v1.resources.sig_info import SigInfo
+from et_api.v1.resources.sig_name_info import SigNameInfo
+from et_api.v1.resources.sig_ref_info import SigRefInfo
+from et_api.web.dictionary_collection import DictionaryCollection
+from et_api.web.dictionary_resource import DictionaryResource
 
 
 class Sid(DictionaryResource[SigNameInfo]):

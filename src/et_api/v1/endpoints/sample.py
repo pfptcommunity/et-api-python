@@ -4,13 +4,13 @@ Package: et_api
 License: MIT
 """
 
-from et_api.v1.resources.ConnectionInfo import ConnectionInfo
-from et_api.v1.resources.DNSInfo import DNSInfo
-from et_api.v1.resources.HTTPInfo import HTTPInfo
-from et_api.v1.resources.IDSEventInfo import IDSEventInfo
-from et_api.v1.resources.MalwareInfo import MalwareInfo
+from et_api.v1.resources.connection_info import ConnectionInfo
+from et_api.v1.resources.dns_info import DNSInfo
+from et_api.v1.resources.http_info import HTTPInfo
+from et_api.v1.resources.ids_event_info import IDSEventInfo
+from et_api.v1.resources.malware_info import MalwareInfo
 from et_api.web import DictionaryResource
-from et_api.web.DictionaryCollection import DictionaryCollection
+from et_api.web.dictionary_collection import DictionaryCollection
 
 
 class Sample(DictionaryResource[MalwareInfo]):

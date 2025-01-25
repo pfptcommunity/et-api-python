@@ -6,8 +6,8 @@ License: MIT
 
 from typing import TypeVar, Type, Generic
 
-from et_api.web.Dictionary import Dictionary
-from et_api.web.Resource import Resource
+from et_api.web.dictionary import Dictionary
+from et_api.web.resource import Resource
 
 T = TypeVar('T', bound=Dictionary)
 
