@@ -184,20 +184,24 @@ if __name__ == '__main__':
 
 ## Proxy Support
 Socks5 Proxy Example:
+
 ```python
 from et_api.v1 import *
+
 if __name__ == '__main__':
     client = Client("<enter_your_api_key_here>")
     credentials = "{}:{}@".format("proxyuser", "proxypass")
-    client.session.proxies = {'https': "{}://{}{}:{}".format('socks5', credentials, '<your_proxy>', '8128')}
+    client._session.proxies = {'https': "{}://{}{}:{}".format('socks5', credentials, '<your_proxy>', '8128')}
 ```
 HTTP Proxy Example (Squid):
+
 ```python
 from et_api.v1 import *
+
 if __name__ == '__main__':
     client = Client("<enter_your_api_key_here>")
     credentials = "{}:{}@".format("proxyuser", "proxypass")
-    client.session.proxies = {'https': "{}://{}{}:{}".format('http', credentials, '<your_proxy>', '3128')}
+    client._session.proxies = {'https': "{}://{}{}:{}".format('http', credentials, '<your_proxy>', '3128')}
 
 ```
 

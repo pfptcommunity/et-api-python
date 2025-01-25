@@ -1,6 +1,6 @@
 """
 Author: Ludvik Jerabek
-Package: et_api
+Package: et-api
 License: MIT
 """
 from requests.adapters import HTTPAdapter
@@ -46,10 +46,10 @@ class Client(Resource):
         super().__init__(None, "https://api.emergingthreats.net/v1/")
         self.__api_token = api_token
         retries = Retry(total=20, backoff_factor=1, status_forcelist=[429, 408])
-        self.session.mount('https://', TimeoutHTTPAdapter(max_retries=retries))
-        self.session.headers.update({'Authorization': api_token})
+        self._session.mount('https://', TimeoutHTTPAdapter(max_retries=retries))
+        self._session.headers.update({'Authorization': api_token})
         self.__error_handler = ErrorHandler()
-        self.session.hooks = {"response": self.__error_handler.handler}
+        self._session.hooks = {"response": self.__error_handler.handler}
         self.__reputation_categories = DictionaryCollection[CategoryInfo](self, "repcategories", CategoryInfo)
         self.__domains = Resources[Domain](self, "domains", Domain)
         self.__ips = Resources[IP](self, "ips", IP)
@@ -78,11 +78,11 @@ class Client(Resource):
 
     @property
     def timeout(self):
-        return self.session.adapters.get('https://').timeout
+        return self._session.adapters.get('https://').timeout
 
     @timeout.setter
     def timeout(self, timeout):
-        self.session.adapters.get('https://').timeout = timeout
+        self._session.adapters.get('https://').timeout = timeout
 
     @property
     def error_handler(self) -> ErrorHandler:

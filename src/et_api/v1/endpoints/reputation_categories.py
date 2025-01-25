@@ -1,6 +1,6 @@
 """
 Author: Ludvik Jerabek
-Package: et_api
+Package: et-api
 License: MIT
 """
 from et_api.v1.resources.CategoryInfo import CategoryInfo

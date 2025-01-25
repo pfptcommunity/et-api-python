@@ -1,6 +1,6 @@
 """
 Author: Ludvik Jerabek
-Package: et_api
+Package: et-api
 License: MIT
 """
 from requests import Response
@@ -14,8 +14,8 @@ class SigNameInfo(Dictionary):
 
     @property
     def sid(self) -> str:
-        return self.response.get('sid', None)
+        return self.get('sid', None)
 
     @property
     def name(self) -> str:
-        return self.response.get('sig_name', None)
+        return self.get('sig_name', None)

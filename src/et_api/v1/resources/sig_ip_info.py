@@ -1,6 +1,6 @@
 """
 Author: Ludvik Jerabek
-Package: et_api
+Package: et-api
 License: MIT
 """
 from et_api.v1.filters.ip_filter import IPFilter
@@ -14,7 +14,7 @@ class SigIPInfo(Resource):
         super().__init__(parent, uri)
 
     def __call__(self, options: IPFilter = IPFilter()) -> Collection[IPInfoEx]:
-        collection = Collection[IPInfoEx](self.session.get(self.uri, params=options.params))
+        collection = Collection[IPInfoEx](self._session.get(self._uri, params=options.params))
         for idx, x in enumerate(collection):
             collection[idx] = IPInfoEx(x)
         return collection

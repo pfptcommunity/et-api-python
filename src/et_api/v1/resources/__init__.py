@@ -1,5 +1,5 @@
 """
 Author: Ludvik Jerabek
-Package: et_api
+Package: et-api
 License: MIT
 """
