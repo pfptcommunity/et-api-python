@@ -1,3 +1,5 @@
+from distutils.command.clean import clean
+
 from et_api.common import *
 from et_api.v1 import *
 
@@ -6,6 +8,69 @@ if __name__ == '__main__':
     api_key = api_key_file.read()
     client = Client(api_key)
 
+    # print(client.malware._uri)
+    # print(client.malware["Balada"]._uri)
+    # data = client.malware["Balada"]()
+    # print(data.name, "-->", data.description)
+
+    print(client.cve._uri)
+    print(client.cve["CVE-2022-30525"]._uri)
+    cve_info = client.cve["CVE-2022-30525"]()
+
+    print(f"CVE: {cve_info.cve}")
+    print(f"Description: {cve_info.description}")
+    print(f"Config Operator: {cve_info.config_operator}")
+    print(f"Source Identifier: {cve_info.source_identifier}")
+    print(f"Vulnerability Status: {cve_info.vuln_status}")
+    print(f"CISA Exploit Add Date: {cve_info.cisa_exploit_add}")
+    print(f"CISA Vulnerability Name: {cve_info.cisa_vulnerability_name}")
+    print(f"Known Exploited Vulnerabilities: {cve_info.known_exploited_vulnerabilities}")
+    print(f"PFPT Recent Observed: {cve_info.pfpt_recent_observed}")
+    print(f"PFPT Ever Observed: {cve_info.pfpt_ever_observed}")
+    print(f"PFPT First Observed: {cve_info.pfpt_first_observed}")
+    print(f"PFPT Last Observed: {cve_info.pfpt_last_observed}")
+    print(f"Seven Day Trend: {cve_info.seven_day_trend}")
+    print(f"Publish Date: {cve_info.publisheddate}")
+    print(f"Last Modified Date: {cve_info.lastmodifieddate}")
+
+    print("BaseMetricV3:")
+    print(f"  Type: {cve_info.basemetricv3.type if cve_info.basemetricv3 else None}")
+    print(f"  Source: {cve_info.basemetricv3.source if cve_info.basemetricv3 else None}")
+    print(f"  CVSS Data:")
+    if cve_info.basemetricv3 and cve_info.basemetricv3.cvss_data:
+        print(f"    Scope: {cve_info.basemetricv3.cvss_data.scope}")
+        print(f"    Version: {cve_info.basemetricv3.cvss_data.version}")
+        print(f"    Base Score: {cve_info.basemetricv3.cvss_data.base_score}")
+        print(f"    Attack Vector: {cve_info.basemetricv3.cvss_data.attack_vector}")
+        print(f"    Base Severity: {cve_info.basemetricv3.cvss_data.base_severity}")
+
+    print("BaseMetricV2:")
+    print(f"  Type: {cve_info.basemetricv2.type if cve_info.basemetricv2 else None}")
+    print(f"  Source: {cve_info.basemetricv2.source if cve_info.basemetricv2 else None}")
+    print(f"  CVSS Data:")
+    if cve_info.basemetricv2 and cve_info.basemetricv2.cvss_data:
+        print(f"    Version: {cve_info.basemetricv2.cvss_data.version}")
+        print(f"    Base Score: {cve_info.basemetricv2.cvss_data.base_score}")
+        print(f"    Access Vector: {cve_info.basemetricv2.cvss_data.access_vector}")
+    print(f"  Impact Score: {cve_info.basemetricv2.impact_score}")
+    print(f"  Exploitability Score: {cve_info.basemetricv2.exploitability_score}")
+    print(f"  AC Insufficient Info: {cve_info.basemetricv2.ac_insuf_info}")
+    print(f"  Base Severity: {cve_info.basemetricv2.base_severity}")
+    print(f"  Obtain All Privilege: {cve_info.basemetricv2.obtain_all_privilege}")
+    print(f"  Obtain User Privilege: {cve_info.basemetricv2.obtain_user_privilege}")
+    print(f"  Obtain Other Privilege: {cve_info.basemetricv2.obtain_other_privilege}")
+    print(f"  User Interaction Required: {cve_info.basemetricv2.user_interaction_required}")
+
+    print("Weaknesses:")
+    if cve_info.weaknesses:
+        for weakness in cve_info.weaknesses:
+            print(f"  Type: {weakness.type}")
+            print(f"  Source: {weakness.source}")
+            if weakness.description:
+                for desc in weakness.description:
+                    print(f"    Lang: {desc.get('lang', '')}, Value: {desc.get('value', '')}")
+
+    exit(0)
     # Get all the reputation categories
     for category in client.reputation_categories():
         print(category.name, "-->", category.description)

@@ -6,8 +6,10 @@ License: MIT
 from requests.adapters import HTTPAdapter
 from requests.adapters import Retry
 
+from et_api.v1.endpoints.cve.cve import CVE
 from et_api.v1.endpoints.domain import Domain
 from et_api.v1.endpoints.ip import IP
+from et_api.v1.endpoints.malware.malware import Malware
 from et_api.v1.endpoints.sample import Sample
 from et_api.v1.endpoints.sid import Sid
 from et_api.v1.resources.category_info import CategoryInfo
@@ -41,6 +43,8 @@ class Client(Resource):
     __ips: Resources[IP]
     __samples: Resources[Sample]
     __sids: Resources[Sid]
+    __malware: Malware
+    __cve: CVE
 
     def __init__(self, api_token: str):
         super().__init__(None, "https://api.emergingthreats.net/v1/")
@@ -55,6 +59,8 @@ class Client(Resource):
         self.__ips = Resources[IP](self, "ips", IP)
         self.__samples = Resources[Sample](self, "samples", Sample)
         self.__sids = Resources[Sid](self, "sids", Sid)
+        self.__malware = Malware(self, "malware")
+        self.__cve = CVE(self, "cve")
 
     @property
     def reputation_categories(self) -> DictionaryCollection[CategoryInfo]:
@@ -75,6 +81,14 @@ class Client(Resource):
     @property
     def sids(self) -> Resources[Sid]:
         return self.__sids
+
+    @property
+    def malware(self) -> Malware:
+        return self.__malware
+
+    @property
+    def cve(self) -> CVE:
+        return self.__cve
 
     @property
     def timeout(self):

@@ -18,4 +18,4 @@ class Resources(Generic[TResource], Resource):
         self.__res = res
 
     def __getitem__(self, domain: str) -> TResource:
-        return self.__res(self, domain.casefold().strip())
+        return self.__res(self, domain.strip())
