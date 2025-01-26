@@ -1,21 +1,21 @@
 """
 Author: Ludvik Jerabek
-Package: et_api
+Package: tap_api
 License: MIT
 """
+from __future__ import annotations
 
-from typing import TypeVar, Type, Generic
-from .resource import Resource
+from typing import Type, Generic, Union
 
-R = TypeVar('R', bound='Resource')
+from .resource import Resource, TResource
 
 
-class Resources(Generic[R], Resource):
-    __res: Type[R]
+class Resources(Generic[TResource], Resource):
+    __res: Type[TResource]
 
-    def __init__(self, parent, uri: str, res: Type[R]):
+    def __init__(self, parent: Union[Resource, None], uri: str, res: Type[TResource]):
         super().__init__(parent, uri)
         self.__res = res
 
-    def __getitem__(self, domain: str) -> R:
+    def __getitem__(self, domain: str) -> TResource:
         return self.__res(self, domain.casefold().strip())

@@ -7,30 +7,18 @@ from typing import Dict
 
 from requests import Response
 
+from et_api.web.response_wrapper import ResponseWrapper
 
-class Dictionary(Dict):
-    __response: Response
 
+class Dictionary(Dict, ResponseWrapper):
     def __init__(self, response: Response):
+        ResponseWrapper.__init__(self, response)
         super().__init__(response.json().get('response', {}))
-        self.__response = response
 
     @property
     def response(self) -> Dict:
-        return self.__response.json().get('response', {})
+        return self._response.json().get('response', {})
 
     @property
     def success(self) -> bool:
-        return self.__response.json().get('success', False)
-
-    @property
-    def status(self) -> int:
-        return self.__response.status_code
-
-    @property
-    def reason(self) -> str:
-        return self.__response.reason
-
-    @property
-    def raw_response(self) -> Response:
-        return self.__response
+        return self._response.json().get('success', False)

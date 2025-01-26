@@ -19,4 +19,4 @@ class CollectionResource(Generic[T], Resource):
         self.__collection_type = collection_type
 
     def __call__(self) -> T:
-        return self.__collection_type(self.session.get(self.uri))
+        return self.__collection_type(self._session.get(self._uri))
